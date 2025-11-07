@@ -45,6 +45,7 @@ const App: React.FC = () => {
   const handleSurveyComplete = async (profile: UserProfile) => {
     if (!userEmail) return;
     setIsLoading(true);
+    setError(null);
     try {
       const updatedProfile = await apiService.saveUserProfile(userEmail, profile);
       setUserProfile(updatedProfile);
@@ -133,7 +134,14 @@ const App: React.FC = () => {
   if (isLoading) {
     return (
         <div className="fixed inset-0 bg-gray-100 flex items-center justify-center z-50">
-            <LoadingSpinner size="12" />
+            <div className="text-center p-8">
+                <LoadingSpinner size="12" />
+                <h2 className="text-xl font-semibold text-gray-700 mt-6">Đang tải dữ liệu...</h2>
+                <p className="text-gray-500 mt-2">
+                    Lần truy cập đầu tiên trong ngày có thể mất một chút thời gian để khởi động máy chủ. <br/>
+                    Vui lòng đợi trong giây lát.
+                </p>
+            </div>
         </div>
     );
   }
