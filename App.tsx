@@ -25,7 +25,7 @@
     const [user, setUser] = useState<UserData | null>(null);
     const [symptoms, setSymptoms] = useState<SymptomLog[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [view, setView] = useState<View>('mealPlan');
+    const [view, setView] = useState<View>('symptomLogger');
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [showApiKeyModal, setShowApiKeyModal] = useState(false);
 
@@ -116,7 +116,7 @@
         case 'reminders':
           return <Reminders />;
         default:
-          return <MealPlan userProfile={user.profile} symptoms={symptoms} />;
+          return <SymptomLogger onAddSymptom={handleAddSymptom} symptoms={symptoms} />;
       }
     };
 
