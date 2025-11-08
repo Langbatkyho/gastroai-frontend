@@ -64,7 +64,8 @@ export async function analyzeTriggers(profile: UserProfile, symptoms: SymptomLog
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ profile, symptoms }),
   });
-  return handleResponse(response); // Assuming the backend sends a plain text/string response correctly wrapped in JSON
+  const data = await handleResponse<{ analysis: string }>(response);
+  return data.analysis;
 }
 
 
